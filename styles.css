@@ -45,6 +45,24 @@ header{
 	flex-direction: column;
 }
 
+#timeUntilChange {
+	width: 20px;
+	height: 20px;
+	margin-top: 1em;
+	color: white;
+	background: rgb(202,196,165);
+	border-radius: 100%;
+	font-size: 0.7em;
+	text-align: center;
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+}
+
+*[data-opaque="false"]{
+	opacity: 0;
+}
+
 *[data-blink="true"]{
 
 	opacity: 1.0;
