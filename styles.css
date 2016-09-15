@@ -1,0 +1,79 @@
+html, body{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	background: #FFF1E0;
+	background-image : url('https://image.webservices.ft.com/v1/images/raw/fticon:brand-ft?width=300&source=docs');
+	background-position: 50%;
+	background-size: 150px;
+	background-repeat: no-repeat;
+	font-family: "metricweb";
+	font-size: 24px;
+}
+
+*[data-visible="false"]{
+	display: none !important;
+}
+
+header{
+	background: #555;
+	color: white;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	align-content: center;
+	padding: 10px;
+	font-weight: normal;
+	font-size: 0.8em;
+}
+
+#demoInteractions{
+	position: fixed;
+	width: 100%;
+	bottom: 10%;
+	display: flex;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+*[data-blink="true"]{
+
+	opacity: 1.0;
+	animation: blinkAnimation 2s infinite ease-in-out;
+	-moz-animation: blinkAnimation 2s infinite ease-in-out; /* Firefox */
+	-webkit-animation: blinkAnimation 2s infinite ease-in-out; /* Safari and Chrome */
+	-o-animation: blinkAnimation 2s infinite ease-in-out; /* Opera */
+}
+
+@keyframes blinkAnimation{
+	0% {opacity : 1.0;}
+	50% {opacity : 0.2;}
+	100% {opacity : 1.0;}
+}
+
+@-moz-keyframes blinkAnimation{
+	0% {opacity : 1.0;}
+	50% {opacity : 0.2;}
+	100% {opacity : 1.0;}
+}
+	
+@-webkit-keyframes blinkAnimation{
+	0% {opacity : 1.0;}
+	50% {opacity : 0.2;}
+	100% {opacity : 1.0;}
+}
+	
+@-o-keyframes blinkAnimation{
+	0% {opacity : 1.0;}
+	50% {opacity : 0.2;}
+	100% {opacity : 1.0;}
+}

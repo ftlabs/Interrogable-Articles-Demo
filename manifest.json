@@ -1,0 +1,29 @@
+{
+  "short_name": "Interrogable Articles",
+  "name": "FT Labs Interrogable Articles",
+  "icons": [
+    {
+      "src": "/images/icons/icon96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icons/icon144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icons/icon192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/icons/icon500.png",
+      "sizes": "500x500",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "standalone",
+  "theme_color" : "#FFF1E0"
+}
