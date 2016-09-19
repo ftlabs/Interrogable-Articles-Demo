@@ -1,6 +1,55 @@
 (function(){
 
 	'use strict';
+	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+	window.audioContext = (window.AudioContext || window.webkitAudioContext || window.mozAudioContext || window.oAudioContext);
+	window.requestAnimationFrame = (window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame);
+	
+	var webAudio = undefined;
+	var stream = undefined;
+	var analyser = undefined;
+	
+	navigator.getUserMedia({
+		audio : true,
+		video : false
+	}, function(stream){
+		console.log(stream);
+
+		webAudio = new window.audioContext();
+		stream = webAudio.createMediaStreamSource( stream );
+		analyser = webAudio.createAnalyser();
+
+		stream.connect(analyser);
+		
+		
+
+		requestAnimationFrame(analyseAudio);
+		
+
+	}, function(err){
+		console.error(err);
+	});
+
+	function analyseAudio(){
+		var bufferLength = analyser.frequencyBinCount,
+			dataArray = new Uint8Array(bufferLength);
+	
+		analyser.getByteTimeDomainData(dataArray);
+
+		const LOUD = bufferLength * 128;
+		var measure = 0; 
+		
+		dataArray.forEach(i => {
+			measure += i;
+		});
+
+		// console.log(measure / LOUD);
+
+		document.querySelector('#output').textContent = (measure / 128) / LOUD;
+
+		requestAnimationFrame(analyseAudio);
+		
+	}
 
 	const userInteractionZone = document.querySelector('#demoInteractions');
 	const infoBox = userInteractionZone.querySelector('.info');
@@ -28,6 +77,23 @@
 	
 	infoBox.textContent = 'Loading Audio Sources';
 	infoBox.dataset.visible = 'true';
+
+	function restartDemo(){
+		
+		stopDemoBtn.dataset.visible = 'false';
+		infoBox.dataset.blink = 'false';
+		infoBox.textContent = '';		
+		infoBox.dataset.visible = 'false';
+		startDemoBtn.dataset.visible = 'true';
+		queryStep = 0;
+		clearTimeout(nextUp);
+
+		document.querySelectorAll('audio').forEach(audio => {
+			audio.pause();
+			audio.currentTime = 0;
+		});
+
+	}
 
 	const loadedSources = audioSources.map( (source, idx) => {
 
@@ -63,6 +129,9 @@
 					if(queryStep < steps){
 						queryStep += 1;
 						document.querySelector('audio[data-step="' + queryStep + '"]').play();
+					} else {
+						infoBox.dataset.visible = "false";
+						restartDemo();
 					}
 	
 				}, breathe);
@@ -97,19 +166,7 @@
 			startDemoBtn.dataset.visible = 'true';
 
 			stopDemoBtn.addEventListener('click', function(){
-
-				this.dataset.visible = 'false';
-				infoBox.dataset.blink = 'false';
-				infoBox.dataset.visible = 'false';
-				startDemoBtn.dataset.visible = 'true';
-				queryStep = 0;
-				clearTimeout(nextUp);
-
-				document.querySelectorAll('audio').forEach(audio => {
-					audio.pause();
-					audio.currentTime = 0;
-				});
-
+				restartDemo();
 			}, false);
 			
 		})
