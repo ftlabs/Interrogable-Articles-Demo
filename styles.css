@@ -34,15 +34,23 @@ header{
 	font-size: 0.8em;
 }
 
+header[data-controlsindicator="true"]{
+	border-top: 2px red solid;
+}
+
 #demoInteractions{
 	position: fixed;
-	width: 100%;
-	bottom: 10%;
-	display: flex;
-	align-content: center;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
+    width: 100%;
+    bottom: 5%;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#fineGrainControls{
+	margin-bottom: 5%;
 }
 
 #timeUntilChange {
