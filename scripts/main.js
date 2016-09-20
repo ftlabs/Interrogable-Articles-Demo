@@ -23,13 +23,13 @@
 
 	const audioSources = [
 		'/audio/part1.m4a',
-		'/audio/answer_1_a.m4a',
-		'/audio/answer_1_b.m4a',
-		'/audio/answer_1_c.m4a',
+		'/audio/answer_1_a.mp3',
+		'/audio/answer_1_b.mp3',
+		'/audio/answer_1_c.mp3',
 		'/audio/part2.m4a',
-		'/audio/answer_2_a.m4a',
-		'/audio/answer_2_b.m4a',
-		'/audio/continuing.m4a',
+		'/audio/answer_2_a.mp3',
+		'/audio/answer_2_b.mp3',
+		'/audio/continuing.mp3',
 		'/audio/part3.m4a',
 	];
 
@@ -37,7 +37,7 @@
 	const steps = audioSources.length;
 	var nextUp = undefined;
 	var currentAudio = undefined;
-
+	
 	const breathe = 3000;
 	
 	document.querySelector('header').addEventListener('click', function(){
@@ -103,6 +103,15 @@
 							queryStep += 1;
 							currentAudio = document.querySelector('audio[data-step="' + queryStep + '"]')
 							currentAudio.play();
+
+							if(queryStep > 0){
+								fineControls.prev.dataset.opaque = "true";
+							}
+
+							if(queryStep >= steps - 1){
+								fineControls.next.dataset.opaque = "false";
+							}
+
 						}, breathe);
 
 				} else {
@@ -144,7 +153,7 @@
 				infoBox.textContent = 'Listening for input...';
 				infoBox.dataset.visible = 'true';
 				infoBox.dataset.blink = 'true';
-				// debugger;
+
 				if(shouldShowFineControls){
 					fineControlsElement.dataset.visible = "true";
 				}
@@ -187,7 +196,7 @@
 			}, false);
 
 			fineControls.prev.addEventListener('click', function(){
-				debugger;
+
 				if(queryStep > 0){
 
 					currentAudio.pause()
