@@ -146,6 +146,10 @@
 			startDemoBtn.addEventListener('click', function(){
 
 				this.dataset.visible = 'false';
+
+				fineControls.prev.dataset.opaque = "false";
+				fineControls.next.dataset.opaque = "true";
+
 				stopDemoBtn.dataset.visible = 'true';
 				currentAudio = document.querySelector('audio[data-step="0"]')
 				currentAudio.play();
@@ -197,6 +201,8 @@
 
 			fineControls.prev.addEventListener('click', function(){
 
+				fineControls.next.dataset.opaque = "true";
+
 				if(queryStep > 0){
 
 					currentAudio.pause()
@@ -207,6 +213,7 @@
 
 					if(queryStep === 0){
 						fineControls.prev.dataset.opaque = "false";
+						
 					} else {
 						fineControls.prev.dataset.opaque = "true";						
 					}
