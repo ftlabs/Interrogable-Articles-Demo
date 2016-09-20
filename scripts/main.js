@@ -119,10 +119,13 @@
 					audioIsUnderway = false;
 					stopDemoBtn.dataset.visible = "false";
 					startDemoBtn.dataset.visible = "true";
+					fineControlsElement.dataset.visible = "false";
 
 					infoBox.dataset.visible = 'true';
 					infoBox.dataset.blink = 'true';
 					infoBox.textContent = "";
+
+					queryStep = 0;
 
 				}
 	
@@ -226,6 +229,12 @@
 			
 			fineControls.next.addEventListener('click', function(){
 				
+				console.log(queryStep, steps - 1);
+
+				if(queryStep + 1 === steps - 1){
+					this.dataset.opaque = "false";
+				}
+
 				if(queryStep < steps - 1){
 					currentAudio.pause()
 					currentAudio.currentTime = 0;
@@ -235,8 +244,6 @@
 
 					fineControls.prev.dataset.opaque = "true";
 
-				} else {
-					this.dataset.opaque = "false";
 				}
 
 			}, false);
