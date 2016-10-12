@@ -38,7 +38,7 @@
 	var nextUp = undefined;
 	var currentAudio = undefined;
 	
-	const breathe = 3000;
+	const breathe = 2000;
 	
 	document.querySelector('header').addEventListener('click', function(){
 
